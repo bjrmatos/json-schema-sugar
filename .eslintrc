@@ -1,0 +1,83 @@
+{
+  "extends": "eslint-config-airbnb-base",
+
+  // Allow the following global variables
+  "env": {
+    "node": true // Node.js global variables and Node.js scoping.
+  },
+
+  "parserOptions": {
+    "ecmaFeatures": {
+      experimentalObjectRestSpread: true
+    }
+  },
+
+  "rules": {
+    "strict": [2, "safe"],
+
+    /**
+     * ES6
+     */
+    "prefer-const": 0,
+
+    /**
+     * Variables
+     */
+    "no-shadow": [2, {
+      "builtinGlobals": true
+    }],
+    "no-unused-vars": [2, {
+      "vars": "all",
+      "args": "after-used"
+    }],
+    "no-use-before-define": [2, "nofunc"],
+
+    /**
+     * Possible errors
+     */
+    "comma-dangle": [2, "never"],
+    "no-inner-declarations": [2, "both"],
+
+    /**
+     * Best practices
+     */
+    "consistent-return": 0,
+    "curly": 2,
+    "dot-notation": [2, {
+      "allowKeywords": true,
+      "allowPattern": "^[a-z]+(_[a-z]+)+$"
+    }],
+    "eqeqeq": [2, "allow-null"],
+    "no-eq-null": 0,
+    "no-redeclare": [2, {
+      "builtinGlobals": true
+    }],
+    "wrap-iife": [2, "inside"],
+    "max-len": [2, 130, 2, {"ignoreUrls": true}],
+
+    /**
+     * Style
+     */
+    "indent": [2, 2, {
+      "VariableDeclarator": {
+        "var": 2,
+        "let": 2,
+        "const": 3
+      },
+      "SwitchCase": 1
+    }],
+    "func-names": 0,
+    "no-multiple-empty-lines": [2, {
+      "max": 1
+    }],
+    "no-extra-parens": [2, "functions"],
+    "one-var": 0,
+    "space-before-function-paren": [2, "never"],
+    "no-underscore-dangle": 0,
+
+    /**
+     *  Import plugin
+     */
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": true, "optionalDependencies": true, "peerDependencies": false}]
+  }
+}
