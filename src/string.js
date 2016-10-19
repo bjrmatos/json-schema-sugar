@@ -30,6 +30,10 @@ inherits(StringSchema, MixedSchema, {
       schema.pattern = opts.pattern;
     }
 
+    if (opts.format != null) {
+      schema.format = opts.format;
+    }
+
     return schema;
   },
 
