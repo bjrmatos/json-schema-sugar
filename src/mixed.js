@@ -2,6 +2,7 @@
 
 import assign from 'object-assign';
 import isPlainObj from 'is-plain-obj';
+import cloneDeep from './utils/clone';
 
 export default function SchemaType(options = {}) {
   if (!(this instanceof SchemaType)) {
@@ -28,12 +29,12 @@ export default function SchemaType(options = {}) {
 
       this._setOption('types', types);
 
-      return this;
+      return this.instance();
     };
 
     this.ref = (value) => {
       this._setOption('ref', value, true);
-      return this;
+      return this.instance();
     };
   }
 }
@@ -67,29 +68,39 @@ SchemaType.prototype = {
     localOpts[optName] = value;
   },
 
+  // return a new instance
+  instance() {
+    return this.clone();
+  },
+
+  // clone the shema
+  clone() {
+    return cloneDeep(this);
+  },
+
   title(value) {
     this._setOption('title', value, true);
-    return this;
+    return this.instance();
   },
 
   description(value) {
     this._setOption('description', value, true);
-    return this;
+    return this.instance();
   },
 
   default(value) {
     this._setOption('default', value, true);
-    return this;
+    return this.instance();
   },
 
   enum(value) {
     this._setOption('enum', value, true);
-    return this;
+    return this.instance();
   },
 
   required() {
     this._setOption('required', true, true);
-    return this;
+    return this.instance();
   },
 
   // property dependencies
@@ -103,7 +114,7 @@ SchemaType.prototype = {
     }
 
     this._setOption('requiredWhen', presentProps, true);
-    return this;
+    return this.instance();
   },
 
   // schema dependencies
@@ -117,38 +128,38 @@ SchemaType.prototype = {
       schema
     }, true);
 
-    return this;
+    return this.instance();
   },
 
   // definitions of sub-schemas
   definitions(value) {
     this._setOption('definitions', value, true);
-    return this;
+    return this.instance();
   },
 
   allOf(value) {
     this._setOption('allOf', value, true);
-    return this;
+    return this.instance();
   },
 
   anyOf(value) {
     this._setOption('anyOf', value, true);
-    return this;
+    return this.instance();
   },
 
   oneOf(value) {
     this._setOption('oneOf', value, true);
-    return this;
+    return this.instance();
   },
 
   not(value) {
     this._setOption('not', value, true);
-    return this;
+    return this.instance();
   },
 
   noType(value) {
     this._setOption('noType', value, true);
-    return this;
+    return this.instance();
   },
 
   generate(generateOptions = {}) {

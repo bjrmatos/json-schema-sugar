@@ -197,27 +197,27 @@ inherits(ObjectSchema, MixedSchema, {
 
   keys(value) {
     this._setOption('keys', value);
-    return this;
+    return this.instance();
   },
 
   additionalProperties(value) {
     this._setOption('additionalProperties', value);
-    return this;
+    return this.instance();
   },
 
   patternProperties(value) {
     this._setOption('patternProperties', value);
-    return this;
+    return this.instance();
   },
 
   minProperties(value) {
     this._setOption('minProperties', value);
-    return this;
+    return this.instance();
   },
 
   maxProperties(value) {
     this._setOption('maxProperties', value);
-    return this;
+    return this.instance();
   }
 });
 

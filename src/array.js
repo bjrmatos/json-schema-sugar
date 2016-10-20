@@ -80,26 +80,26 @@ inherits(ArraySchema, MixedSchema, {
 
   items(value) {
     this._setOption('items', value);
-    return this;
+    return this.instance();
   },
 
   additionalItems(value) {
     this._setOption('additionalItems', value);
-    return this;
+    return this.instance();
   },
 
   minItems(value) {
     this._setOption('minItems', value);
-    return this;
+    return this.instance();
   },
 
   maxItems(value) {
     this._setOption('maxItems', value);
-    return this;
+    return this.instance();
   },
 
   uniqueItems(value) {
     this._setOption('uniqueItems', value);
-    return this;
+    return this.instance();
   }
 });

@@ -50,31 +50,31 @@ inherits(NumberSchema, MixedSchema, {
 
   integer() {
     this._setOption('isInteger', true);
-    return this;
+    return this.instance();
   },
 
   multipleOf(value) {
     this._setOption('multipleOf', value);
-    return this;
+    return this.instance();
   },
 
   minimum(value) {
     this._setOption('minimum', value);
-    return this;
+    return this.instance();
   },
 
   maximum(value) {
     this._setOption('maximum', value);
-    return this;
+    return this.instance();
   },
 
   exclusiveMinimum(value) {
     this._setOption('exclusiveMinimum', value);
-    return this;
+    return this.instance();
   },
 
   exclusiveMaximum(value) {
     this._setOption('exclusiveMaximum', value);
-    return this;
+    return this.instance();
   }
 });

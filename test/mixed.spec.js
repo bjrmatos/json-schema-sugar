@@ -11,6 +11,13 @@ describe('mixed type', () => {
     sugar.mixed();
   });
 
+  it('instance should be inmutable', () => {
+    const schema = sugar.number(),
+          schema2 = schema.integer();
+
+    expect(schema).not.to.be.equal(schema2);
+  });
+
   it('should generate schema with empty object by default', () => {
     const schema = sugar.mixed();
 

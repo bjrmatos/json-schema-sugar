@@ -39,12 +39,12 @@ inherits(StringSchema, MixedSchema, {
 
   minLength(value) {
     this._setOption('minLength', value);
-    return this;
+    return this.instance();
   },
 
   maxLength(value) {
     this._setOption('maxLength', value);
-    return this;
+    return this.instance();
   },
 
   pattern(_value) {
@@ -55,11 +55,11 @@ inherits(StringSchema, MixedSchema, {
     }
 
     this._setOption('pattern', value);
-    return this;
+    return this.instance();
   },
 
   format(value) {
     this._setOption('format', value);
-    return this;
+    return this.instance();
   }
 });
