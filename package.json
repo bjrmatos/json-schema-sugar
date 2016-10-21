@@ -1,6 +1,6 @@
 {
   "name": "json-schema-sugar",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Create a JSON Schema without the pain of writing it",
   "main": "lib/index.js",
   "scripts": {
