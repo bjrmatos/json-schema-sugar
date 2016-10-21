@@ -25,7 +25,8 @@
   "keywords": [
     "json",
     "schema",
-    "json-schema"
+    "json-schema",
+    "chainable"
   ],
   "devDependencies": {
     "babel-cli": "6.16.0",
