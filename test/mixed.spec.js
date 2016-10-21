@@ -36,6 +36,16 @@ describe('mixed type', () => {
     verifySchemaOutput(schema, expected);
   });
 
+  it('should not include type when using `noType`', () => {
+    const schema = sugar.number().multipleOf(5).noType();
+
+    const expected = {
+      multipleOf: 5
+    };
+
+    verifySchemaOutput(schema, expected);
+  });
+
   it('should generate schema with only `enum`', () => {
     const schema = sugar.mixed().enum([1, 2, 3]);
 

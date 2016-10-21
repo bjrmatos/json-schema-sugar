@@ -157,8 +157,8 @@ SchemaType.prototype = {
     return this.instance();
   },
 
-  noType(value) {
-    this._setOption('noType', value, true);
+  noType() {
+    this._setOption('noType', true, true);
     return this.instance();
   },
 
