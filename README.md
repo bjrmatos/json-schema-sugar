@@ -20,6 +20,7 @@ The API and style is ~~stolen~~ heavily inspired by [Joi](https://github.com/hap
     - [`mixed.title(title: string): Schema`](#mixedtitletitle-string-schema)
     - [`mixed.description(description: string): Schema`](#mixeddescriptiondescription-string-schema)
     - [`mixed.default(default: any): Schema`](#mixeddefaultdefault-any-schema)
+    - [`mixed.meta(field: string | object, value: ?any): Schema` Alias: `extra`](#mixedmetafield-string--object-value-any-schema-alias-extra)
     - [`mixed.enum(values: Array<any>): Schema`](#mixedenumvalues-arrayany-schema)
     - [`mixed.required(): Schema`](#mixedrequired-schema)
     - [`mixed.requiredWhen(dependantProp: string | Array<string>): Schema`](#mixedrequiredwhendependantprop-string--arraystring-schema)
@@ -150,6 +151,60 @@ Adds a description in the schema.
 #### `mixed.default(default: any): Schema`
 
 Adds a default value in the schema.
+
+#### `mixed.meta(field: string | object, value: ?any): Schema` Alias: `extra`
+
+Adds custom fields to the schema, multiple calls to `.meta` will accumulate data with previous calls.
+
+With field:
+
+```js
+var schema = sugar.object().keys({
+  name: sugar.string().required().meta('example', 'Bob').meta('isMain', true),
+});
+
+schema.generate();
+```
+
+Output:
+
+```js
+{
+  type: 'object',
+  properties: {
+    name: {
+      type: 'string',
+      example: 'Bob',
+      isMain: true
+    }
+  }
+}
+```
+
+With an Object:
+
+```js
+var schema = sugar.object().keys({
+  name: sugar.string().required().meta({ example: 'Bob', isMain: true }),
+});
+
+schema.generate();
+```
+
+Output:
+
+```js
+{
+  type: 'object',
+  properties: {
+    name: {
+      type: 'string',
+      example: 'Bob',
+      isMain: true
+    }
+  }
+}
+```
 
 #### `mixed.enum(values: Array<any>): Schema`
 

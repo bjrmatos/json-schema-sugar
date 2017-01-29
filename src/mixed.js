@@ -93,6 +93,32 @@ SchemaType.prototype = {
     return this.instance();
   },
 
+  meta(key, value) {
+    let prevData = this._getAllOptions().meta || {},
+        data;
+
+    if (key == null) {
+      return this.instance();
+    }
+
+    if (isPlainObj(key)) {
+      data = key;
+    } else {
+      data = {
+        [key]: value
+      };
+    }
+
+    data = { ...prevData, ...data };
+
+    this._setOption('meta', data, true);
+    return this.instance();
+  },
+
+  extra(key, value) {
+    return this.meta(key, value);
+  },
+
   enum(value) {
     this._setOption('enum', value, true);
     return this.instance();
@@ -258,6 +284,11 @@ function addMixedProps(jsonSchema, opts) {
   if (opts.default !== undefined) {
     // eslint-disable-next-line no-param-reassign
     jsonSchema.default = opts.default;
+  }
+
+  if (opts.meta != null) {
+    // eslint-disable-next-line no-param-reassign
+    assign(jsonSchema, opts.meta);
   }
 
   if (Array.isArray(opts.enum)) {

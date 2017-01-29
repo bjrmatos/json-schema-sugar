@@ -46,6 +46,107 @@ describe('mixed type', () => {
     verifySchemaOutput(schema, expected);
   });
 
+  it('should generate schema with meta info as object (custom fields)', () => {
+    const schema = sugar.number().meta({
+      customField: 'value',
+      anotherField: 'value'
+    });
+
+    const expected = {
+      type: 'number',
+      customField: 'value',
+      anotherField: 'value'
+    };
+
+    verifySchemaOutput(schema, expected);
+  });
+
+  it('should generate schema with meta info (custom fields)', () => {
+    const schema = sugar.number().meta('customField', 'value');
+
+    const expected = {
+      type: 'number',
+      customField: 'value'
+    };
+
+    verifySchemaOutput(schema, expected);
+  });
+
+  it('should generate schema with meta info (custom fields) (using extra alias)', () => {
+    const schema = sugar.string().extra('customField', 'value');
+
+    const expected = {
+      type: 'string',
+      customField: 'value'
+    };
+
+    verifySchemaOutput(schema, expected);
+  });
+
+  it('should generate schema with meta info in object type (custom fields)', () => {
+    const schema = sugar.object().keys({
+      name: sugar.string(),
+      age: sugar.number().integer().minimum(0),
+      domHand: sugar.string().enum(['left', 'right', 'ambidextrous'])
+    }).meta('example', { name: 2 });
+
+    const expected = {
+      type: 'object',
+      properties: {
+        name: { type: 'string' },
+        age: { type: 'integer', minimum: 0 },
+        domHand: { type: 'string', enum: ['left', 'right', 'ambidextrous'] }
+      },
+      example: {
+        name: 2
+      }
+    };
+
+    verifySchemaOutput(schema, expected);
+  });
+
+  it('should generate schema with meta info in object type (custom fields) (using extra alias)', () => {
+    const schema = sugar.object().keys({
+      name: sugar.string(),
+      age: sugar.number().integer().minimum(0),
+      domHand: sugar.string().enum(['left', 'right', 'ambidextrous'])
+    }).meta('example', { name: 2 });
+
+    const expected = {
+      type: 'object',
+      properties: {
+        name: { type: 'string' },
+        age: { type: 'integer', minimum: 0 },
+        domHand: { type: 'string', enum: ['left', 'right', 'ambidextrous'] }
+      },
+      example: {
+        name: 2
+      }
+    };
+
+    verifySchemaOutput(schema, expected);
+  });
+
+  it('should generate schema with meta info in complex object type (custom fields)', () => {
+    const schema = sugar.object().keys({
+      name: sugar.string().meta('example', 'Bob'),
+      age: sugar.number().integer().minimum(0)
+          .meta('example', 42),
+      domHand: sugar.string().enum(['left', 'right', 'ambidextrous']).meta('example', 'left')
+    });
+
+    const expected = {
+      type: 'object',
+      properties: {
+        name: { type: 'string', example: 'Bob' },
+        age: { type: 'integer', minimum: 0, example: 42 },
+        domHand: { type: 'string', enum: ['left', 'right', 'ambidextrous'], example: 'left' }
+      }
+    };
+
+    verifySchemaOutput(schema, expected);
+  });
+
   it('should generate schema with only `enum`', () => {
     const schema = sugar.mixed().enum([1, 2, 3]);
 
