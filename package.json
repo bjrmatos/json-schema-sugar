@@ -6,6 +6,7 @@
   "scripts": {
     "clean": "rimraf lib",
     "toc": "doctoc README.md --github",
+    "changelog": "changelog -t ${npm_package_version} -m \"\\[(add|remove|update|fix)\\]\"",
     "build": "npm-run-all compile toc",
     "compile": "babel src --out-dir lib",
     "lint": "eslint src test",
@@ -42,6 +43,7 @@
     "in-publish": "2.0.0",
     "json-stable-stringify": "^1.0.1",
     "mocha": "3.1.2",
+    "mt-changelog": "0.6.2",
     "npm-run-all": "3.1.0",
     "rimraf": "2.5.4"
   },
